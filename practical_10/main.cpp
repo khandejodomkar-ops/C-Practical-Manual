@@ -1,15 +1,16 @@
 ﻿#include <iostream>
 #include <stdexcept>
 #include <string>
+using namespace std;
 
-class InvalidAmount : public std::invalid_argument {
+class InvalidAmount : public invalid_argument {
 public:
-    InvalidAmount(const std::string& message) : std::invalid_argument(message) {}
+    InvalidAmount(const string& message) : invalid_argument(message) {}
 };
 
-class InsufficientFunds : public std::runtime_error {
+class InsufficientFunds : public runtime_error {
 public:
-    InsufficientFunds(const std::string& message) : std::runtime_error(message) {}
+    InsufficientFunds(const string& message) : runtime_error(message) {}
 };
 
 class BankAccount {
@@ -37,29 +38,29 @@ int main() {
 
     try {
         account.withdraw(1200.0);
-        std::cout << "Withdrawal successful. Balance: " << account.getBalance() << "\n";
+        cout << "Withdrawal successful. Balance: " << account.getBalance() << "\n";
     } catch (const InvalidAmount& e) {
-        std::cout << "Invalid amount: " << e.what() << "\n";
+        cout << "Invalid amount: " << e.what() << "\n";
     } catch (const InsufficientFunds& e) {
-        std::cout << "Insufficient funds: " << e.what() << "\n";
+        cout << "Insufficient funds: " << e.what() << "\n";
     }
 
     try {
         account.withdraw(-50.0);
     } catch (const InvalidAmount& e) {
-        std::cout << "Invalid amount: " << e.what() << "\n";
+        cout << "Invalid amount: " << e.what() << "\n";
     } catch (const InsufficientFunds& e) {
-        std::cout << "Insufficient funds: " << e.what() << "\n";
+        cout << "Insufficient funds: " << e.what() << "\n";
     }
 
     try {
         account.withdraw(20000.0);
     } catch (const InvalidAmount& e) {
-        std::cout << "Invalid amount: " << e.what() << "\n";
+        cout << "Invalid amount: " << e.what() << "\n";
     } catch (const InsufficientFunds& e) {
-        std::cout << "Insufficient funds: " << e.what() << "\n";
+        cout << "Insufficient funds: " << e.what() << "\n";
     }
 
-    std::cout << "Final balance: " << account.getBalance() << "\n";
+    cout << "Final balance: " << account.getBalance() << "\n";
     return 0;
 }

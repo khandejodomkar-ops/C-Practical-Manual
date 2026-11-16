@@ -1,31 +1,32 @@
 ﻿#include <iostream>
 #include <string>
+using namespace std;
 
 int main() {
-    std::string name;
+    string name;
     int hours;
     double rate;
     const double TAX_RATE = 0.10;
 
-    std::cout << "Enter your name: ";
-    std::getline(std::cin, name);
-    std::cout << "Enter hours worked: ";
-    std::cin >> hours;
-    std::cout << "Enter hourly rate: ";
-    std::cin >> rate;
+    cout << "Enter your name: ";
+    getline(cin, name);
+    cout << "Enter hours worked: ";
+    cin >> hours;
+    cout << "Enter hourly rate: ";
+    cin >> rate;
 
     double grossPay = hours * rate;
     double tax = grossPay * TAX_RATE;
     double netPay = grossPay - tax;
 
-    std::cout << "\nEmployee: " << name << std::endl;
-    std::cout << "Gross pay: " << grossPay << std::endl;
-    std::cout << "Tax: " << tax << std::endl;
-    std::cout << "Net pay: " << netPay << std::endl;
+    cout << "\nEmployee: " << name << endl;
+    cout << "Gross pay: " << grossPay << endl;
+    cout << "Tax: " << tax << endl;
+    cout << "Net pay: " << netPay << endl;
 
     bool isEligible = (netPay > 5000);
-    std::cout << "Eligible for bonus? " << (isEligible ? "Yes" : "No") << std::endl;
+    cout << "Eligible for bonus? " << (isEligible ? "Yes" : "No") << endl;
 
-    std::cout << "\nArithmetic check: " << (10 + 5) << " " << (10 > 5) << " " << ((10 > 5) && (8 < 12)) << std::endl;
+    cout << "\nArithmetic check: " << (10 + 5) << " " << (10 > 5) << " " << ((10 > 5) && (8 < 12)) << endl;
     return 0;
 }

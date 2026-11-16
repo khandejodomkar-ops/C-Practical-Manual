@@ -1,13 +1,14 @@
 ﻿#include <iostream>
 #include <string>
+using namespace std;
 
 class BankAccount {
 private:
-    std::string accountNumber;
+    string accountNumber;
     double balance;
 
 public:
-    BankAccount(std::string accNo, double initialBalance) : accountNumber(accNo), balance(initialBalance) {
+    BankAccount(string accNo, double initialBalance) : accountNumber(accNo), balance(initialBalance) {
         if (initialBalance < 0) {
             balance = 0;
         }
@@ -21,19 +22,19 @@ public:
 
     void withdraw(double amount) {
         if (amount <= 0) {
-            std::cout << "Withdrawal amount must be positive.\n";
+            cout << "Withdrawal amount must be positive.\n";
             return;
         }
         if (amount > balance) {
-            std::cout << "Insufficient balance.\n";
+            cout << "Insufficient balance.\n";
             return;
         }
         balance -= amount;
     }
 
     void display() const {
-        std::cout << "Account: " << accountNumber << "\n";
-        std::cout << "Balance: Rs. " << balance << "\n";
+        cout << "Account: " << accountNumber << "\n";
+        cout << "Balance: Rs. " << balance << "\n";
     }
 };
 
@@ -45,12 +46,12 @@ int main() {
     account1.withdraw(200.0);
     account2.withdraw(2500.0);
 
-    std::cout << "Account 1 details:\n";
+    cout << "Account 1 details:\n";
     account1.display();
-    std::cout << "\nAccount 2 details:\n";
+    cout << "\nAccount 2 details:\n";
     account2.display();
 
-    std::cout << "\nPrivate members are hidden from outside code and protected by encapsulation.\n";
-    std::cout << "Public members can be accessed directly and provide safe operations like deposit and withdraw.\n";
+    cout << "\nPrivate members are hidden from outside code and protected by encapsulation.\n";
+    cout << "Public members can be accessed directly and provide safe operations like deposit and withdraw.\n";
     return 0;
 }

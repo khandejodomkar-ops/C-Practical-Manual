@@ -3,11 +3,12 @@
 #include <sstream>
 #include <string>
 #include <vector>
+using namespace std;
 
-void writeStudentsCSV(const std::string& filename) {
-    std::ofstream out(filename, std::ios::trunc);
+void writeStudentsCSV(const string& filename) {
+    ofstream out(filename, ios::trunc);
     if (!out) {
-        std::cout << "Could not open file for writing.\n";
+        cout << "Could not open file for writing.\n";
         return;
     }
 
@@ -18,48 +19,48 @@ void writeStudentsCSV(const std::string& filename) {
     out.close();
 }
 
-void readStudentsCSV(const std::string& filename) {
-    std::ifstream in(filename);
+void readStudentsCSV(const string& filename) {
+    ifstream in(filename);
     if (!in) {
-        std::cout << "Could not open file for reading.\n";
+        cout << "Could not open file for reading.\n";
         return;
     }
 
-    std::string line;
-    std::getline(in, line);
-    while (std::getline(in, line)) {
-        std::stringstream ss(line);
-        std::string token;
-        std::vector<std::string> fields;
-        while (std::getline(ss, token, ',')) {
+    string line;
+    getline(in, line);
+    while (getline(in, line)) {
+        stringstream ss(line);
+        string token;
+        vector<string> fields;
+        while (getline(ss, token, ',')) {
             fields.push_back(token);
         }
         if (fields.size() == 3) {
-            std::cout << "ID: " << fields[0] << ", Name: " << fields[1] << ", Marks: " << fields[2] << "\n";
+            cout << "ID: " << fields[0] << ", Name: " << fields[1] << ", Marks: " << fields[2] << "\n";
         }
     }
     in.close();
 }
 
 int main() {
-    std::string filename = "students.csv";
+    string filename = "students.csv";
     writeStudentsCSV(filename);
-    std::cout << "CSV written.\n";
+    cout << "CSV written.\n";
     readStudentsCSV(filename);
 
-    std::ifstream file(filename);
-    std::streampos pos1 = file.tellg();
-    std::cout << "Initial tellg(): " << pos1 << "\n";
-    file.seekg(0, std::ios::end);
-    std::streampos end = file.tellg();
-    std::cout << "After seekg(0, end), tellg(): " << end << "\n";
+    ifstream file(filename);
+    streampos pos1 = file.tellg();
+    cout << "Initial tellg(): " << pos1 << "\n";
+    file.seekg(0, ios::end);
+    streampos end = file.tellg();
+    cout << "After seekg(0, end), tellg(): " << end << "\n";
 
-    std::ofstream out(filename, std::ios::app);
-    std::streampos pos2 = out.tellp();
-    std::cout << "Initial tellp(): " << pos2 << "\n";
+    ofstream out(filename, ios::app);
+    streampos pos2 = out.tellp();
+    cout << "Initial tellp(): " << pos2 << "\n";
     out << "104,David,81.4\n";
     out.close();
 
-    std::cout << "\nCSV format stores data as comma-separated fields, while file-position functions tell us where reading or writing occurs.\n";
+    cout << "\nCSV format stores data as comma-separated fields, while file-position functions tell us where reading or writing occurs.\n";
     return 0;
 }

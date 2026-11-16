@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <memory>
 #include <vector>
+using namespace std;
 
 class Shape {
 public:
@@ -39,16 +40,16 @@ public:
 };
 
 int main() {
-    std::vector<std::unique_ptr<Shape>> shapes;
-    shapes.push_back(std::make_unique<Circle>(5.0));
-    shapes.push_back(std::make_unique<Rectangle>(4.0, 6.0));
-    shapes.push_back(std::make_unique<Triangle>(8.0, 3.0));
+    vector<unique_ptr<Shape>> shapes;
+    shapes.push_back(make_unique<Circle>(5.0));
+    shapes.push_back(make_unique<Rectangle>(4.0, 6.0));
+    shapes.push_back(make_unique<Triangle>(8.0, 3.0));
 
     for (const auto& shape : shapes) {
-        std::cout << "Area: " << shape->area() << "\n";
+        cout << "Area: " << shape->area() << "\n";
     }
 
-    std::cout << "\nShape is abstract because it contains a pure virtual function.\n";
-    std::cout << "That forces derived classes to implement area().\n";
+    cout << "\nShape is abstract because it contains a pure virtual function.\n";
+    cout << "That forces derived classes to implement area().\n";
     return 0;
 }

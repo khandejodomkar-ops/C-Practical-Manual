@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include <cstring>
+using namespace std;
 
 class IntArray {
 private:
@@ -8,7 +9,7 @@ private:
 
 public:
     IntArray() : data(nullptr), size(0) {
-        std::cout << "Default constructor called.\n";
+        cout << "Default constructor called.\n";
     }
 
     IntArray(int n) : size(n) {
@@ -16,13 +17,13 @@ public:
         for (int i = 0; i < size; ++i) {
             data[i] = i + 1;
         }
-        std::cout << "Parameterized constructor called.\n";
+        cout << "Parameterized constructor called.\n";
     }
 
     IntArray(const IntArray& other) : size(other.size) {
         data = new int[size];
-        std::memcpy(data, other.data, size * sizeof(int));
-        std::cout << "Copy constructor called.\n";
+        memcpy(data, other.data, size * sizeof(int));
+        cout << "Copy constructor called.\n";
     }
 
     IntArray& operator=(const IntArray& other) {
@@ -32,15 +33,15 @@ public:
         delete[] data;
         size = other.size;
         data = new int[size];
-        std::memcpy(data, other.data, size * sizeof(int));
-        std::cout << "Copy assignment called.\n";
+        memcpy(data, other.data, size * sizeof(int));
+        cout << "Copy assignment called.\n";
         return *this;
     }
 
     IntArray(IntArray&& other) noexcept : data(other.data), size(other.size) {
         other.data = nullptr;
         other.size = 0;
-        std::cout << "Move constructor called.\n";
+        cout << "Move constructor called.\n";
     }
 
     IntArray& operator=(IntArray&& other) noexcept {
@@ -51,21 +52,21 @@ public:
             other.data = nullptr;
             other.size = 0;
         }
-        std::cout << "Move assignment called.\n";
+        cout << "Move assignment called.\n";
         return *this;
     }
 
     ~IntArray() {
         delete[] data;
-        std::cout << "Destructor called.\n";
+        cout << "Destructor called.\n";
     }
 
     void print() const {
-        std::cout << "Array values: ";
+        cout << "Array values: ";
         for (int i = 0; i < size; ++i) {
-            std::cout << data[i] << " ";
+            cout << data[i] << " ";
         }
-        std::cout << "\n";
+        cout << "\n";
     }
 };
 
@@ -80,7 +81,7 @@ int main() {
     a3 = a1;
     a3.print();
 
-    IntArray a4 = std::move(a1);
+    IntArray a4 = move(a1);
     a4.print();
     return 0;
 }
